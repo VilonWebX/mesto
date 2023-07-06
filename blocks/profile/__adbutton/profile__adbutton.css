@@ -1,0 +1,29 @@
+.profile__adbutton {
+    width: 150px;
+    height: 50px;
+    border: 2px;
+    margin-left: auto;
+    background-color: #000000;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+.profile__adbutton:hover {
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 642px) {
+    .profile__adbutton {
+        width: 120px;
+        height: 35px;
+    }
+}
+
+@media screen and (max-width: 448px) {
+    .profile__adbutton {
+        margin-left: 0;
+        width: 282px;
+        height: 50px;
+        margin-top: 36px;
+    }
+}
