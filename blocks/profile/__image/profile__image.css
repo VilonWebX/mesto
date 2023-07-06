@@ -1,0 +1,18 @@
+.profile__image {
+    width: 150px;
+    height: 50px;
+}
+
+@media screen and (max-width: 642px) {
+    .profile__image {
+        width: 125px;
+        height: 35px;
+    }
+}
+
+@media screen and (max-width: 448px) {
+    .profile__image {
+        width: 282px;
+        height: 50px;
+    }
+}
