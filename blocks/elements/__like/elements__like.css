@@ -1,0 +1,11 @@
+.elements__like {
+    margin-left: auto;
+}
+
+.elements__like:hover {
+    opacity: 0.5;
+}
+
+.elements__like:active {
+    color: #000000;
+}
