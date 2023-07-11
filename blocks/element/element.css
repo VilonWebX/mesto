@@ -1,0 +1,7 @@
+.element {
+    max-width: 282px;
+    background-color: #FFFFFF;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 10px;
+}
