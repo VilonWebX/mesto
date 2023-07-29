@@ -1,0 +1,14 @@
+.elements__button {
+    background-image: url(/image/Vector2.svg);
+    background-repeat: no-repeat;
+    border: none;
+    outline: none;
+    width: 22px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    background-position: center;
+}
+.elements__button:hover {
+    opacity: 0.5;
+}
