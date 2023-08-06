@@ -1,0 +1,17 @@
+.popup-image__text {
+    max-width: 291px;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    line-height: 15px;
+    text-align: left;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+@media screen  and (max-width: 400px)  {
+    .popup-image__text {
+        max-width: 240px;
+        
+    }
+}
