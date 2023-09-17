@@ -181,4 +181,4 @@ const validationPopupMesto = new FormValidator(formElementMesto, config)
 
 validationPopupProfile.enableValidation()
 validationPopupMesto.enableValidation()
-export {openPopup} 
+ 
