@@ -1,9 +1,0 @@
-.popup__label:not(.popup__text-error) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 0px;
-}
-.popup__label:nth-child(2) {
-    margin-bottom: 0;
-}
