@@ -9,26 +9,23 @@ import UserInfo from './scripts/UserInfo.js';
 
 import './pages/index.css'; // добавьте импорт главного файла стилей
 
+
 const profileButton = document.querySelector('.profile__edit-button'); //РЕДАКТИРОВАНИЕ ПРОФИЛЯ 
-const popupProfile = document.querySelector('.popup_type_profile');
-const popupCloseProfile = popupProfile.querySelector('.popup__close_type_profile');
 const formElementProfile = document.querySelector('.popup__form_type_profile');
 const nameInput = formElementProfile.querySelector('.popup__input_type_name');
 const jobInput = formElementProfile.querySelector('.popup__input_type_job');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__job');
+
 const openAddMenuButton = document.querySelector('.profile__add-button')
 const formElementMesto = document.querySelector('.popup__form_type_mesto');
-const popupSave = document.querySelector('.popup__save')
 const namedInput = formElementMesto.querySelector('.popup__input_type_named');
 const linkInput = formElementMesto.querySelector('.popup__input_type_link');
 
-const arxizImage = new URL('./image/kirillpershin1088404unsplash.jpg', import.meta.url);
-const bashkiriyImage = new URL('./image/kirillpershin1404681unsplash.jpg', import.meta.url)
-const ivanovoImage = new URL('./image/kirillpershin1404681unsplash.jpg', import.meta.url)
-const kamchatkaImage = new URL('./image/kirillpershin1404681unsplash.jpg', import.meta.url)
-const adegeaImage = new URL('./image/kirillpershin1404681unsplash.jpg', import.meta.url)
-const baikalImage = new URL('./image/kirillpershin1404681unsplash.jpg', import.meta.url)
+const arxizImage = new URL('./image/kirillpershin1556355unsplash1.jpg', import.meta.url);
+const bashkiriyImage = new URL('./image/kirillpershin1556355unsplash1.jpg', import.meta.url)
+const ivanovoImage = new URL('./image/kirillpershin1556355unsplash1.jpg', import.meta.url)
+const kamchatkaImage = new URL('./image/kirillpershin1556355unsplash1.jpg', import.meta.url)
+const adegeaImage = new URL('./image/kirillpershin1556355unsplash1.jpg', import.meta.url)
+const baikalImage = new URL('./image/kirillpershin1556355unsplash1.jpg', import.meta.url)
 
 const initialCards = [
   {
@@ -57,24 +54,22 @@ const initialCards = [
   }
 ];
 
-
-const config = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save',
   disabledButtonClass: 'popup__save_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible',
-}
-
-const validationPopupProfile = new FormValidator(formElementProfile, config)
-const validationPopupMesto = new FormValidator(formElementMesto, config)
+} 
+const validationPopupProfile = new FormValidator(formElementProfile, validationConfig)
+const validationPopupMesto = new FormValidator(formElementMesto, validationConfig)
 validationPopupProfile.enableValidation()
 validationPopupMesto.enableValidation()
 
 const userInfo = new UserInfo({
-  userName: '.profile__name', 
-  userDescription: '.profile__job'
+  userNameSelector: '.profile__name', 
+  userDescriptionSelector: '.profile__job'
 });
 
 const popupWithImage = new PopupWithImage ('.popup-image')
@@ -82,7 +77,7 @@ popupWithImage.setEventListeners()
 
 function createCard (name, link) {
   const card = new Card(name, link, '#template-elements', () => {
-    popupWithImage.openImage(name, link);
+    popupWithImage.open(name, link);
   });
   return card.getView();
 }
@@ -93,7 +88,7 @@ profileButton.addEventListener('click', () => {
   nameInput.value = name
   jobInput.value = description
   editPopupForm.open() 
-  validationPopupProfile.enableValidation()
+  validationPopupProfile.enableSubmitButton()
 })
 
 const cardsSection = new Section({
@@ -125,5 +120,5 @@ addPopupForm.setEventListeners()
 
 openAddMenuButton.addEventListener('click', function () {
   addPopupForm.open()
-  validationPopupMesto.enableValidation()
+  validationPopupMesto.disableSubmitButton()
 })

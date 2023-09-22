@@ -1,6 +1,4 @@
 
-import PopupWithImage from './PopupWithImage.js'
-
 export default class Card {
     constructor( name, link, templateSelector, handleCardClick) {
         this._name = name
@@ -33,7 +31,7 @@ export default class Card {
     }
     _setImageClickEventListener() {
           this._imageCard.addEventListener('click', () => {
-          this._handleCardClick( this._name, this._link);
+            this._handleCardClick( this._name, this._link)
         });
     }
     _handleDeleteCard() {
