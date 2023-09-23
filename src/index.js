@@ -94,8 +94,10 @@ const api = new Api({
 
 function createCard (name, link) {
   const card = new Card(name, link, '#template-elements', () => {
-    popupWithImage.open(name, link);
-  });
+    popupWithImage.open(name, link)
+  }, handleCardDelete: (cardID, cardElement) => {
+
+  })
   return card.getView();
 }
 

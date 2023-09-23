@@ -1,11 +1,12 @@
 
 export default class Card {
-    constructor(name, link, templateSelector, handleCardClick) {
+    constructor(name, link, templateSelector, handleCardClick, handleCardDelete) {
         this._name = name
         this._link = link
         this._templateSelector = templateSelector
         this._newCard = this._getTemplate()
         this._handleCardClick = handleCardClick
+        this._handleCardDelete = handleCardDelete
     }
     _getTemplate() {
         const templateCard = document
