@@ -76,15 +76,13 @@ const validationConfig = {
 const validationPopupProfile = new FormValidator(formElementProfile, validationConfig)
 const validationPopupMesto = new FormValidator(formElementMesto, validationConfig)
 const validationAvatar = new FormValidator(formAvatar, validationConfig)
-validationPopupProfile.enableValidation()
-validationPopupMesto.enableValidation()
-validationAvatar.enableValidation()
+
 
 const apiConfig = {
   url: 'https://mesto.nomoreparties.co/v1/cohort-75',
   headers: {
     'Content-Type': "application/json",
-    authorization: '6eb95615-41bc-4a8d-9ae0-0a0f51b44964'
+    'authorization': '6eb95615-41bc-4a8d-9ae0-0a0f51b44964'
   }
 }
 const api = new Api(apiConfig);
@@ -223,7 +221,9 @@ const popupFormDelete = new PopupDelete('.popup_ques', {
 // Функция валидации 
 
 // Вызов функции валидации 
-
+validationPopupProfile.enableValidation()
+validationPopupMesto.enableValidation()
+validationAvatar.enableValidation()
 // Слушатели 
 cardImagePopup.setEventListeners()
 popupFormProfile.setEventListeners()
