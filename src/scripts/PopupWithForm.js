@@ -1,10 +1,10 @@
 import Popup from "./Popup.js"
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector, handleSubmit) {
+    constructor(popupSelector,  { submitCallback }) {
         super(popupSelector)
-        this._handleSubmit = handleSubmit
+        this._submitCallback = submitCallback;
         this._form = this._popup.querySelector('.popup__form')
-        this._inputs = this._form.querySelectorAll('.popup__input')
+        this._inputs = Array.from(this._form.querySelectorAll('.popup__input'))
         this._button = this._form.querySelector('.popup__save')
     }
     _getInputValues() {
@@ -14,16 +14,24 @@ export default class PopupWithForm extends Popup {
         })
         return values
     }
-    setEventListeners() {
-        super.setEventListeners() 
-        this._form.addEventListener('submit', (evt) => {
-            evt.preventDefault()
-            this._handleSubmit(this._getInputValues())
-        })
+    setInputValues = (data) => {
+      this._inputs.forEach((input, i) => {
+        input.value = Object.values(data)[i];
+      });
     }
+  
     close() {
-        super.close()
         this._form.reset()
+        super.close()
+    }
+    renderPreloader(loading, Text) {
+      if (!this._button) return;
+      if (loading) {
+        this.defaulText = this._button.textContent;
+        this._button.textContent = Text;
+      } else {
+        this._button.textContent = this.defaulText;
+      }
     }
     renderSaveLoading(isLoading) {
         if(isLoading) {
@@ -32,12 +40,11 @@ export default class PopupWithForm extends Popup {
           this._button.textContent = 'Сохранить';
         }
     }
-    renderCreateLoading(isLoading) {
-        if(isLoading) {
-          this._button.textContent = 'Создание...';
-        } else {
-          this._button.textContent = 'Сохранить';
-        }
-      }
-    
+    setEventListeners() {
+      super.setEventListeners();
+      this._form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        this._submitCallback(this._getInputValues());
+      })
+    }
 }

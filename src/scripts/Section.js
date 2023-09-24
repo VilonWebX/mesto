@@ -1,17 +1,17 @@
 export default class Section {
-    constructor({ data, renderer }, selector) {
-        this._items = data //добавить массив 6 краточек
+    constructor({ renderer }, containerSelector) {
         this._renderer = renderer //функция
-        this._selector = document.querySelector(selector) //куда добавить 
+        this._container = document.querySelector(containerSelector) //куда добавить 
     }
-    //вставить один эелемент в контейнер
+    renderItems(items, user) {
+        items.forEach(item => {
+          this._renderer(item, user);
+        });
+    }
     addItem(element) {
-        this._selector.prepend(element)
+        this._container.append(element)
     }
-    //отрисовка всех элементов 
-    render() {
-        this._items.forEach((item) => {
-            this._renderer(item)
-        })
-    }
-}
+    prependItem(element) {
+        this._container.prepend(element);
+      }
+}  

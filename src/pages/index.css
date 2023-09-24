@@ -43,6 +43,7 @@
 @import url(../blocks/element-container/element-container.css);
 @import url(../blocks/elements/__trash/_hide/elements__trash_hide.css);
 @import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/elements/__span/elements__span.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 

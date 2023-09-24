@@ -1,113 +1,92 @@
 export default class Api {
-    constructor({ url, headers }) {
-        this._url = url;
-        this._headers = headers;
+  constructor(config) {
+    this._headers = config.headers
+    this._url = config.url
+    this._authorization = config.headers['authorization'];
+  } 
+  //Проверка на ошибки
+  _ifCheck(res) {
+    if (res.ok) {
+      return res.json();
     }
-    _ifcheck(res) {
-        if (res.ok) {
-            return res.json()
-        }
-        throw new Error('ошибка!')
-    }
-    getUserInfo() {
-        return fetch(this._url + '/users/me', {
-            method: 'GET',
-            headers: this._headers
-        })
-            .then(this._ifcheck)
-            .catch((err) => {
-                console.log(err);
-            });
-    }
-    setUserInfo(info) {
-        return fetch(this._url + '/users/me', {
-          method: 'PATCH',
-          headers: this._headers,
-          body: JSON.stringify({
-            name: info.name,
-            description: info.description
-          })
-        })
-        .then(this._ifcheck)
-        .catch((err) => {
-            console.log(err);
-        });
-    }
-    getAllCards() {
-        return fetch(this._url + '/cards', {
-          method: 'GET',
-          headers: this._headers
-        })
-        .then(this._ifcheck)
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    setEditProfile() {
-        return fetch(this._url + '/users/me', {
-          method: 'PATCH',
-          headers: this._headers
-        })
-        .then(this._ifcheck)
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    setNewCard(cards) {
-        return fetch(this._url + '/cards', {
-          method: 'POST',
-          headers: this._headers,
-          body: JSON.stringify({
-            name: cards.name,
-            link: cards.link
-          })
-        })
-        .then(this._ifcheck)
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    addLiked(id) {
-        return fetch(this._url + `/cards/${id}likes/`, {
-          method: 'PUT',
-          headers: this._headers
-        })
-        .then(this._ifcheck)
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    deleteLike(id) {
-        return fetch(this._url + `/cards/${id}likes/`, {
-          method: 'DELETE',
-          headers: this._headers
-        })
-        .then(this._ifcheck)
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    changeAvatar(data) {
-        return fetch(this._url + '/users/me/avatar', {
-          method: 'PATCH',
-          headers: this._headers,
-          body: JSON.stringify({
-            avatar: data.avatar
-          })
-        })
-        .then(this._ifcheck)
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    deleteCard(id) {
-        return fetch(this._url + `/cards/${id}`, {
-          method: 'DELETE',
-          headers: this._headers
-        })
-          .then(this._ifcheck)
-          .catch((err) => {
-            console.log(err);
-        });
-    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+  //Запрос данных с сервера
+  getInitialCards() {
+    return fetch(`${this._url}/cards`, {
+      headers: {
+        authorization: this._authorization
+      },
+    })
+    .then(res => this._ifCheck(res))
+  }
+  //Функция добавления новой карточки на сервер
+  addNewCard(data) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      }),
+    })
+    .then(res => this._ifCheck(res))
+  }
+  //Функция получения данных пользователя с сервера
+  getUserInfoApi() {
+    return fetch(`${this._url}/users/me`, {
+      headers: {
+        authorization: this._authorization
+      },
+    })
+    .then(res => this._ifCheck(res))
+  }
+  //Функция передачи данных пользователя с сервера 
+  setUserInfoApi(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about,
+      }),
+    })
+    .then(res => this._ifCheck(res))
+  }
+  //Функция передачи на сервер нового аватара
+  setUserAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
+      }),
+    })
+    .then(res => this._ifCheck(res))
+  }
+
+  //*Функция отправки лайка на сервер
+  putLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+    .then(res => this._ifCheck(res))
+  }
+  //Функция удаления карточки с сервера
+  deleteCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(res => this._ifCheck(res))
+  }
+  //Функция удаления лайка с сервера
+  deleteCardLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(res => this._checkResponse(res))
+  }
 }

@@ -37,6 +37,7 @@
                             <div class="elements__group">
                                 <h2 class="elements__text"></h2>
                                 <button class="elements__button" aria-label="Like" type="button"></button>
+                                <span class="elements__span"></span>
                             </div>
                         </div>
                     </template>
@@ -104,7 +105,7 @@
         <div class="popup__container">
             <button type="button" class="popup__close popup__close_four"></button>
           <h2 class="popup__title">Вы уверены?</h2>
-          <form class="popup__form popup__form_type_with_ques">
+          <form class="popup__form popup__form_type_ques">
             <button type="submit" class="popup__save popup__confirm">Да</button>
           </form>
         </div>
@@ -114,9 +115,9 @@
         <div class="popup__container">
           <button type="button" class="popup__close popup__close_five"></button>  
           <h2 class="popup__title">Обновить аватар</h2>
-          <form class="popup__form popup__form_type_with-avatar" name="profile-form" novalidate>
+          <form class="popup__form popup__form_type_avatar" name="avatar-form" novalidate>
             <label class="popup__label popup__label_one">
-              <input type="url" class="popup__input popup__input_href-avatar" id="popup__avatar" name="input_avatar" placeholder="ссылка на аватарку">
+              <input type="url" class="popup__input popup__input_type_avatar" id="popup__avatar" name="input_avatar" placeholder="ссылка на аватарку">
               <span class="popup__text-error popup__avatar-error"></span>
             </label>
             <button type="submit" class="popup__save popup__avatar">Сохранить</button>
