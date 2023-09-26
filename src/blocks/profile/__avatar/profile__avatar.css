@@ -1,0 +1,22 @@
+.profile__avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.profile__avatar:hover {
+    opacity: 0.5;
+    background-image: url('/src/image/VectorWere.svg');
+}
+@media screen and (max-width: 642px) {
+    .profile__avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .profile__avatar {
+        width: 120px;
+        height: 120px;
+    }
+}

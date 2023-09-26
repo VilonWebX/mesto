@@ -1,0 +1,8 @@
+.profile__image {
+    border-radius: 50%;
+}
+.profile__image:hover {
+    background-image: url('/src/image/VectorWere.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
