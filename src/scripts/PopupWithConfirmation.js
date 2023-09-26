@@ -5,6 +5,8 @@ export default class PopupWithConfirmation extends Popup {
         super(popupSelector);
         this._submitFormFunction = submitFormFunction;
         this._deleteButton = this._popup.querySelector(".popup__delete");
+        this._formElement = this._popup.querySelector('.popup__form');
+        this._submitButton = this._formElement.querySelector('.popup__save');
     }
 
     open = ({card, cardId}) => {
@@ -17,13 +19,16 @@ export default class PopupWithConfirmation extends Popup {
         this._submitFormFunction({ cardId: this._cardId });
       }
 
-    renderLoading(isLoading) {
-        if (isLoading) {
-            this._deleteButton.textContent = "Удаление...";
+      renderLoading(loading, displayText) {
+        if (!this._submitButton) return;
+        if (loading) {
+          this.defaulText = this._submitButton.textContent;
+          this._submitButton.textContent = displayText;
         } else {
-            this._deleteButton.textContent = "Удалить";
+          this._submitButton.textContent = this.defaulText;
         }
-    }
+      }
+    
 
     setEventListeners() {
         super.setEventListeners();

@@ -1,14 +1,19 @@
 .elements__button {
-    background-image: url(../../../image/Vector2.svg);
-    background-repeat: no-repeat;
-    border: none;
-    outline: none;
     width: 22px;
-    background-color: transparent;
-    cursor: pointer;
-    padding: 0;
+    height: 19px;
+    background-color: #fff;
+    background: url(../../../image/Vector2.svg);
+    background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
+    border: none;
+    padding: 0;
+    /* margin-top: 5px; */
+    margin: 0;
+
 }
+
 .elements__button:hover {
+    cursor: pointer;
     opacity: 0.5;
 }

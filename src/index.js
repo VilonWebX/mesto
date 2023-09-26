@@ -39,7 +39,7 @@ const popupWithImage = new PopupWithImage('.popup-image');
 function createCard (element) {
   const card = new Card(element, popupWithImage.open,
     popupDeleteCard.open, (like, cardId) => {
-    if (like.classList.contains('elements__button_active')) {
+    if (card.handleCardLikeFunction(like)) {
       api.deleteLike(cardId)
         .then(res => {card.toggleLike(res.likes)})
         .catch(err => console.log(`Что-то пошло не так: ${err}`))
@@ -51,10 +51,10 @@ function createCard (element) {
   });
   return card.createCard();
   }
-
+  
 
   const popupDeleteCard = new PopupWithConfirmation('.popup_ques', ({ card, cardId }) => {
-    popupDeleteCard.renderLoading(true);
+    popupDeleteCard.renderLoading(true, "Удаление...");
     api.deleteCard(cardId)
         .then(() => {
           card.removeCard()
@@ -73,7 +73,7 @@ const section =  new Section((element) => {
 
 // addpopup
 const addPopup = new PopupWithForm('.popup_type_mesto', (data) => {
-  addPopup.renderLoading(true);
+  addPopup.renderLoading(true, 'Загрузка...');
   api.addNewCard(data)
     .then((res) => {
       res.myId = res.owner._id;
@@ -84,9 +84,8 @@ const addPopup = new PopupWithForm('.popup_type_mesto', (data) => {
     .finally(() => addPopup.renderLoading(false));
 });
 
-
 const avatarPopup = new PopupWithForm('.popup_avatar', (data) => {
-  avatarPopup.renderLoading(true);
+  avatarPopup.renderLoading(true, 'Сохранение...');
   api.editAvatar(data)
   .then(res => { 
     userInfo.setAvatar({ 
@@ -99,7 +98,7 @@ const avatarPopup = new PopupWithForm('.popup_avatar', (data) => {
 });
 
 const editPopup = new PopupWithForm('.popup_type_profile', (data) => {
-  editPopup.renderLoading(true);
+  editPopup.renderLoading(true, 'Сохранение...');
   api.editProfileInfo(data)
     .then(res => { 
       userInfo.setUserInfo({ 

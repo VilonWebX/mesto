@@ -33,8 +33,9 @@ export default class Card {
   _addLike = () => {
     this._handleCardLike(this._addLikeBtn, this._cardId);
   }
-
-  
+  handleCardLikeFunction(like) {
+    return like.classList.contains('elements__button_active')
+  }
   _countLikes = () => {
     this._likes.forEach((like) => {
       if (like._id === this._myId) {
