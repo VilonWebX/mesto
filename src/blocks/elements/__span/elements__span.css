@@ -4,5 +4,5 @@
     font-size: 13px;
     line-height: 16px;
     text-align: center;
-    color: #000;
+    flex-direction: column;
   }

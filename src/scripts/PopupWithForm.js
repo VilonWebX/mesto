@@ -1,50 +1,48 @@
 import Popup from "./Popup.js"
+
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector,  { submitCallback }) {
-        super(popupSelector)
-        this._submitCallback = submitCallback;
-        this._form = this._popup.querySelector('.popup__form')
-        this._inputs = Array.from(this._form.querySelectorAll('.popup__input'))
-        this._button = this._form.querySelector('.popup__save')
+  constructor(popupSelector, submitFormFunction) {
+    super(popupSelector);
+    this._submitFormFunction = submitFormFunction;
+    this._formElement = this._popup.querySelector('.popup__form');
+    this._inputList  = Array.from(this._popup.querySelectorAll('.popup__input'))
+    this._submitButton = this._formElement.querySelector('.popup__save');
+  }
+
+  //собирает данные всех полей формы
+  _getInputValues() {
+    const values = {}
+    this._inputList.forEach((input) => {
+        values[input.name] = input.value
+    })
+    return values
+  }
+
+ //заполняет инпут полученными данными 
+  setInputValues(configInfo) {
+    this._inputList.forEach(input => {
+      input.value = configInfo[input.name];
+    });
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.value = "Сохранение...";
+    } else {
+      this._submitButton.value = "Сохранить";
     }
-    _getInputValues() {
-        const values = {}
-        this._inputs.forEach((input) => {
-            values[input.name] = input.value
-        })
-        return values
+}
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._submitFormFunction(this._getInputValues());
     }
-    setInputValues = (data) => {
-      this._inputs.forEach((input, i) => {
-        input.value = Object.values(data)[i];
-      });
-    }
-  
-    close() {
-        this._form.reset()
-        super.close()
-    }
-    renderPreloader(loading, Text) {
-      if (!this._button) return;
-      if (loading) {
-        this.defaulText = this._button.textContent;
-        this._button.textContent = Text;
-      } else {
-        this._button.textContent = this.defaulText;
-      }
-    }
-    renderSaveLoading(isLoading) {
-        if(isLoading) {
-          this._button.textContent = 'Сохранение...';
-        } else {
-          this._button.textContent = 'Сохранить';
-        }
-    }
-    setEventListeners() {
-      super.setEventListeners();
-      this._form.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        this._submitCallback(this._getInputValues());
-      })
-    }
+  )}
+
+  close() {
+    super.close();
+    this._formElement.reset();
+  }
 }

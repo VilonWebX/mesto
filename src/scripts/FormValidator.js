@@ -48,6 +48,18 @@ class FormValidator {
             this.enableSubmitButton()
         }
     }
+    _resetError(input, errorTextElement) {
+        input.classList.remove(this._inputErrorClass);
+        errorTextElement.textContent = " ";
+        errorTextElement.classList.remove(this._errorClass);
+    }
+    resetInputForm() {
+        this._inputs.forEach((inputElement) => {
+          const errorTextElement = document.querySelector(`.${inputElement.id}-error`);
+          this._resetError(inputElement, errorTextElement);
+        });
+        this.disableSubmitButton();
+    }
     _setEventListeners() {
         this._toggleButtonState()
         this._inputs.forEach((inputElement) => {
@@ -63,5 +75,4 @@ class FormValidator {
 }
 
 export default FormValidator
-
 
