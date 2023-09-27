@@ -73,7 +73,7 @@ const section =  new Section((element) => {
 
 // addpopup
 const addPopup = new PopupWithForm('.popup_type_mesto', (data) => {
-  addPopup.renderLoading(true, 'Загрузка...');
+  addPopup.renderLoading(true, 'Сохранение...');
   api.addNewCard(data)
     .then((res) => {
       res.myId = res.owner._id;
