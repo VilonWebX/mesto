@@ -5,21 +5,21 @@ Mesto: A Social Photo Management Platform Mesto is a web application designed to
 4) Social Interaction - liking Photos:Mesto promotes engagement by allowing users to express appreciation for others' photos by like.
 https://vilonwebx.github.io/mesto/
 
-Technology stack
+Technology stack:
 HTML 5;
 CSS 3;
 JavaScript;
 
-Using
-
+Using:
 Flexbox;
-ООП (Классы)
-Npm
-Webpack
-API (POST, GET, PUT, DELETE)
-Grid Layout
+OOP;
+Npm;
+Webpack;
+API (POST, GET, PUT, DELETE);
+Grid Layout;
 Media queries
 Nested БЭМ;
-Семантическая разметка;
-Позиционирование;
-Popup
+Semantic markup;
+Positioning;
+Popup.
+
