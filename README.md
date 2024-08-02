@@ -4,11 +4,14 @@ Mesto: A Social Photo Management Platform Mesto is a web application designed to
 3)Editing Photos: While Mesto doesn't currently offer in-app photo editing, it lays the groundwork for future enhancements that might include basic editing tools like cropping, resizing, and applying filters. 
 4) Social Interaction - liking Photos:Mesto promotes engagement by allowing users to express appreciation for others' photos by like.
 https://vilonwebx.github.io/mesto/
+
 Technology stack
 HTML 5;
 CSS 3;
 JavaScript;
+
 Using
+
 Flexbox;
 ООП (Классы)
 Npm
